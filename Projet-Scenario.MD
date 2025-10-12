@@ -11,4 +11,4 @@
 | **사용할 소프트웨어 패키지의 명칭과 핵심기능/용도** | - Gemini API: 썸네일(이미지)과 제목(텍스트)의 연관성 및 시너지 효과 분석 <br>- React: 프론트엔드, 반응형 웹 UI 개발, 추천 결과 및 그래프 시각화 <br>- Spring: 백엔드 개발 <br>- Firestore: 사용자, 영상 데이터 분석 및 저장 <br>- Docker + AWS: 배포 및 운영 <br> - Google Cloud: Vertex AI 기반 ML Ops 환경 구축 (Cloud Functions/Run, Cloud Storage 활용) |
 | **사용할 소프트웨어 패키지의 명칭과 URL** | - Gemini API: [https://ai.google.dev/](https://ai.google.dev/) <br>- React: [https://react.dev](https://react.dev) <br>- Spring: [https://spring.io/](https://spring.io/) <br>- Firestore: [https://firebase.google.com/products/firestore?hl=ko](https://firebase.google.com/products/firestore?hl=ko) <br>- Docker: [https://www.docker.com](https://www.docker.com) <br>- AWS: [https://aws.amazon.com](https://aws.amazon.com) <br>- Google Cloud: [https://cloud.google.com/](https://cloud.google.com/) |
 | **팀그라운드룰** | [https://github.com/DaeTaChulDong/2025EwhaCapstoneProject/blob/main/Groundrule.md](https://github.com/DaeTaChulDong/2025EwhaCapstoneProject/blob/main/Groundrule.md) |
-| **최종수정일** | 2025/09/16 |
+| **최종수정일** | 2025/10/12 |
