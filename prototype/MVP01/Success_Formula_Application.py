@@ -104,7 +104,7 @@ def visualize_results(frames):
     plt.show()
 
 if __name__ == "__main__":
-    video_file = "6306039-uhd_2160_4096_24fps.mp4"
+    video_file = "동영상 URL 넣어주세요"
     
     if os.path.exists(video_file):
         analyze_video_vs_trend(video_file)
