@@ -21,7 +21,7 @@ RECEIVER_EMAIL = "받는_사람_이메일@gmail.com"
 def send_email_report(content):
     """분석 결과를 이메일로 발송합니다."""
     msg = MIMEText(content)
-    msg['Subject'] = "[SyncIt] 당신의 영상 분석 리포트가 도착했습니다."
+    msg['Subject'] = "[Think:it] 당신의 영상 분석 리포트가 도착했습니다."
     msg['From'] = EMAIL_SENDER
     msg['To'] = RECEIVER_EMAIL
 
@@ -41,7 +41,7 @@ def get_trends():
 
 @app.get("/analyze")
 def run_analysis():
-    video_path = "6306039-uhd_2160_4096_24fps.mp4"
+    video_path = "영상 URL 넣어주세요"
     trends = get_trends()
     
     # 영상 프레임 추출 (간략화)
