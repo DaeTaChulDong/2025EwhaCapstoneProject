@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 2025EwhaCapstoneProject
+Readme ver0.9
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## [소개]
+본 프로젝트는 AI 기반 유튜브 콘텐츠 분석 및 맞춤형 전략 컨설팅 서비스입니다. 급변하는 유튜브 시장에서 크리에이터가 '감'이 아닌 데이터 기반의 명확한 성공 전략을 수립할 수 있도록 돕습니다. 시장 트렌드와 사용자 콘텐츠의 고유한 매력을 결합하여, 조회수를 극대화할 수 있는 최적의 썸네일과 제목을 제안합니다.
 
-Currently, two official plugins are available:
+## [대상]
+- 유튜브 채널 성장을 원하는 초보 및 중급 크리에이터
+- 시행착오와 시간 낭비를 줄이고 빠르게 채널을 성장시키고자 하는 사용자
+- 어떤 썸네일과 제목이 효과적인지 객관적인 데이터가 필요한 사용자
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## [주요 기능]
+**1. 시장 트렌드 분석**: 특정 카테고리(예: 게임, 요리, 여행) 내 높은 조회수 영상 데이터를 AI가 학습하여 현재 시장의 성공 공식을 도출합니다.
+- 썸네일 스타일 분석:
+  - 인물/사물 배치, 구도, 배경 등의 시각적 요소 분석
+  - 색감, 대비 등 주목도를 높이는 컬러 팔레트 분석
+  - 폰트 스타일, 크기, 위치 등 가독성과 매력을 높이는 텍스트 요소 분석
+- 제목 키워드 패턴 분석
+  -  자주 사용되는 고효율 키워드(예: '역대급', '꿀팁', '충격') 추출
+  -  문장 구조, 길이, 감정적 요소 포함 여부 등 제목 패턴 분석
+    
+**2. 내 콘텐츠 분석**: 사용자가 업로드할 영상을 AI가 분석하여 고유한 매력 포인트를 추출합니다.
+- 가장 인상적인 장면 분석: 표정, 구도 등을 분석하여 썸네일로 활용하기 좋은 'Best 컷' 또는 '하이라이트 장면' 제시
+- 핵심 키워드 추출: 영상의 내용과 스크립트를 기반으로 가장 중요한 주제와 키워드 자동 추출
+- 하이라이트 구간 식별: 시청자의 몰입도가 높을 것으로 예상되는 구간을 분석
 
-## React Compiler
+**3. 데이터 기반 맞춤형 전략 컨설팅**: '시장의 성공 공식'과 '내 영상의 매력 포인트'를 결합하여 가장 최적화된 결과물을 제안합니다.
+- 썸네일 최적화 제안
+  - "현재 IT리뷰 채널 성공 공식에 따르면, 썸네일에 인물과 제품이 함께 나오는 것이 효과적입니다."
+  - "당신 영상의 3분 15초 표정이 가장 좋으니, 이 장면을 활용해 이런 스타일로 만드세요." (스타일 예시와 함께 구체적인 가이드라인 제공)
+- 제목 최적화 제안
+  - "인기 여행 영상들은 '역대급', '인생샷' 같은 키워드를 많이 사용합니다."
+  - "당신 영상의 핵심 주제 **'제주도'**와 결합하여 '내 인생샷 건진 제주도 역대급 숨은 명소' 같은 제목을 추천합니다."
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## [사용 기술]
+- YouTube Data API: 시장 트렌드 및 데이터 분석을 위한 대량의 영상 메타데이터 수집
 
-## Expanding the ESLint configuration
+- AI 모델:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  - 컴퓨터 비전: 썸네일 이미지 인식 및 스타일 분석, 영상 내 인물 표정 및 구도 분석
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+  - 자연어 처리 (NLP): 제목 키워드/패턴 분석, 영상 스크립트 기반 핵심 키워드 추출
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Python (ML/DL 라이브러리): AI 모델 학습 및 데이터 분석
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 클라우드 컴퓨팅 (예: AWS, GCP): 대용량 데이터 처리 및 분석 인프라
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## [문제 정의]
+- Key words: AI 컨설턴트, 멀티모달 AI, 트렌드 분석, 맞춤형 전략
+- 누구를 위해: 유튜브 채널 성장에 어려움을 겪는 크리에이터, 시간 및 노동력 절약이 필요한 크리에이터
+- 해결하는 문제: 크리에이터들이 직감에 의존하여 썸네일과 제목을 만들어 시간 낭비와 성장 정체를 겪는 문제. (시장의 성공 방식과 내 콘텐츠의 장점을 객관적으로 파악하기 어려움)
+- 어떤 기술로: 유튜브 데이터 마이닝, 컴퓨터 비전, 자연어 처리 AI 기술
+- 무엇을 만들려고 하는가: 시장 성공 공식과 사용자 콘텐츠의 매력 포인트를 결합한 데이터 기반의 맞춤형 썸네일/제목 전략 컨설팅 플랫폼
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## [생각해볼 점]
+- 데이터의 시의성 확보: 유튜브 트렌드가 빠르게 변하므로, 분석 엔진의 데이터 학습 주기를 얼마나 자주 가져갈 것인가?
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 제안의 구체화: '이런 스타일'이라는 막연한 제안 대신, 구체적인 디자인 요소(색상 코드, 폰트 이름 등)까지 제시할 수 있는가?
+
+- 카테고리별 성공 공식의 차별화: 카테고리(예: 게임, 교육, 먹방)별로 분석 모델을 완전히 분리하여 정확도를 높일 방안
+
+- 저작권 및 API 사용 규정 준수: 유튜브 데이터 API의 사용량 및 약관을 철저히 준수하는 방안

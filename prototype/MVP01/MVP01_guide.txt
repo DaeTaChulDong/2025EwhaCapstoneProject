@@ -1,0 +1,18 @@
+[Project SyncIt] MVP v1.1: 실시간 분석 및 이메일 리포트 자동화 서버
+
+1. 개요
+   - [cite_start]본 프로그램은 FastAPI 서버를 기반으로 작동하며, API 요청 시 유튜브 트렌드 수집 및 영상 멀티모달 분석을 수행합니다. [cite: 19, 114]
+
+2. 서버 실행 및 사용법
+   - youtubetest1.env로 이동
+   - [cite_start]서버 실행: python MVP01.py [cite: 104]
+   - 분석 요청: 브라우저에서 http://127.0.0.1:8000/analyze 접속
+   - 결과 확인: 웹 화면 출력 및 등록된 이메일로 리포트 자동 발송
+
+3. 핵심 로직
+   - [cite_start]데이터 수집: YouTube API를 통한 실시간 트렌드 키워드 확보 [cite: 107]
+   - [cite_start]영상 분석: OpenAI GPT-4o를 이용한 1 FPS 프레임 분석 [cite: 42, 112]
+   - [cite_start]알림 서비스: SMTP를 활용한 이메일 컨설팅 리포트 제공 [cite: 118]
+
+4. 주의사항
+   - 구글 보안 정책에 따라 EMAIL_PASSWORD는 반드시 '앱 비밀번호(16자리)'를 사용해야 합니다.
