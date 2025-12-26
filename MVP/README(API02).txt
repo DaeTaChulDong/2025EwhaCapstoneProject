@@ -52,9 +52,11 @@ Google Colab의 '보안 비밀(Secrets)' 또는 로컬의 `.streamlit/secrets.to
 * `OPENAI_API_KEY`: OpenAI API 키 (GPT-4o, DALL-E 3 사용)
 * `EMAIL_SENDER`: 발송자 이메일 주소 (Gmail 권장)
 * `EMAIL_PASSWORD`: 이메일 앱 비밀번호 (SMTP 인증용)
+* `YOUTUBE_API_KEY`: Youtube Data API 키
 
 ### 2) 데이터 파일 준비
-* `youtube_top200_data.csv`: 카테고리별 벤치마크 데이터가 포함된 CSV 파일이 프로젝트 루트 경로에 있어야 합니다.
+
+앞서 유튜브 API KEY를 통해서 VideoCollect를 돌려서 만든 `youtube_top200_data.csv` 파일이 카테고리별 벤치마크 데이터가 포함된 프로젝트 루트 경로에 있어야 합니다.
 
 ### 3) 실행 명령어
 Google Colab에서 실행 시 Cloudflared를 이용해 외부 URL을 생성합니다.
