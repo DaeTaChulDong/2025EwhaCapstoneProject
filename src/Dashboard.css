@@ -1,0 +1,705 @@
+/* --- 대시보드 분석 히스토리 스타일 --- */
+/* 1. 먼저 모든 카드가 들어있는 '부모'의 너비를 딱 잡아줍니다 */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1084px; 
+  min-width: 820px; 
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.history-section-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #101010;
+  margin-bottom: 25px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.history-item {
+  display: flex;
+  background-color: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #eaeaea;
+  gap: 24px;
+  transition: all 0.2s ease;
+
+  min-width: 700px; 
+  flex-shrink: 0;
+}
+
+.history-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* 썸네일 이미지 */
+.history-thumbnail {
+  width: 180px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #eee;
+}
+
+.history-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 정보 영역 */
+.history-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.history-video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 너무 길면 끝에 ... 처리 (선택사항) */
+}
+
+/* 진행바 스타일 */
+.history-progress-container {
+  margin: 12px 0;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: #F1F1F1;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b91c1c, #dc2626);
+  transition: width 0.5s ease-in-out;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+/* 결과 보기 버튼 */
+.history-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-view-result {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  background-color: #F1F1F1;
+  color: #AAA;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-view-result.active {
+  background-color: #BC0100;
+  color: white;
+  cursor: pointer;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-view-result.active:hover {
+  background-color: #9a0100;
+  transform: translateY(-1px);
+}
+
+.result-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.result-header .history-section-title {
+  margin: 0;
+  color: #101010;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #603E39;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+.result-video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #603E39;
+}
+
+/* 공통 카드 스타일 -> 제대로 사용해야됨 지금 하나도x*/
+.result-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0 0 24px 0;
+}
+
+/* 1. 상단 섹션 (점수 & 제목 추천) -> 제대로 사용해야됨 지금 하나도x */
+.result-top-section {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.score-card {
+  width: 290px;
+  height: 475px;
+  flex-shrink: 0;
+  padding: 32px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(25, 28, 29, 0.06);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  gap: 20px;
+}
+
+/* 점수 카드 제목 */
+.score-card .card-title {
+  margin: 0;
+  color: #101010;
+
+  align-self: stretch; 
+  text-align: left;
+}
+
+.score-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 8px solid #BC0100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  
+  box-shadow: 0 0 15px rgba(188, 1, 0, 0.2), inset 0 0 10px rgba(188, 1, 0, 0.1);
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseGlow 2s infinite alternate;
+}
+
+.score-number {
+  font-size: 48px;
+  font-weight: 600;
+  color: #101010;
+  line-height: 1;
+}
+
+.score-max {
+  font-size: 14px;
+  font-weight: 600;
+  color: #603E39;
+  margin-left: 4px;
+}
+
+/* 하단 설명 텍스트들 */
+.score-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #101010;
+  margin-top: -5px;
+
+  align-self: stretch; 
+  text-align: left;
+}
+
+.score-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #603E39;
+  line-height: 1.8;
+
+  text-align: center;
+}
+
+.titles-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  background-color: #F3F4F5;
+  border-radius: 8px;
+}
+
+.titles-card .card-title {
+  margin: 0;
+  color: #101010;
+}
+
+.title-recommend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #FFFFFF;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.recommend-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0 0 8px 0;
+}
+
+.recommend-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block; 
+  background-color: #f9f9f9; 
+  
+  text-indent: -9999px;
+  color: transparent; 
+}
+
+.recommend-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #603E39;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.btn-copy {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.btn-copy:hover {
+  transform: scale(1.1);
+}
+
+.thumbnails-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  margin-bottom: 40px;
+}
+
+.thumbnails-card .card-title {
+  margin: 0;
+  color: #101010;
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.thumb-recommend-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.recommend-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background-color: #F3F4F5;
+}
+
+.thumb-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.thumb-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.thumb-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.thumb-type {
+  font-size: 16px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0;
+}
+
+.thumb-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #603E39;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.btn-download {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FFF5F5;
+  color: #BC0100;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-download:hover {
+  background-color: #FFEBEB;
+}
+
+.analysis-card {
+  width: 100%;
+  max-width: 1084px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+
+  z-index: 0;
+}
+
+/* 제목 폰트 설정 */
+.analysis-card .card-title {
+  margin: 0;
+  color: #101010;
+  margin-bottom: 20px;
+}
+
+/* 텍스트 문단들을 묶어주는 박스 */
+.analysis-content {
+  max-width: 85%;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+
+  position: relative;
+  z-index: 1;
+}
+
+/* 텍스트 디테일 */
+.analysis-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 28px;
+  color: #603E39;
+  word-break: keep-all; 
+}
+
+/* 차트 아이콘 절대 좌표 (우측 상단 고정) */
+.analysis-icon {
+  position: absolute;
+  top: 40px; 
+  right: 40px;
+  width: 106.7px;
+  height: 112px;
+
+  opacity: 0.4; 
+  z-index: 0;
+}
+
+/* 화면이 아주 좁아져서 760px보다 작아질 때를 대비한 모바일/태블릿 방어 */
+@media screen and (max-width: 1024px) {
+  .analysis-content {
+    /* 화면이 좁아지면 아이콘 크기만큼만 빼고 꽉 채우도록 유연하게 변경 */
+    max-width: calc(100% - 140px); 
+  }
+}
+
+/* 4. 공유하기 박스 */
+.result-share-box {
+  width: 100%;
+  max-width: 1084px; 
+  height: 150px;
+  background-color: #F3F4F5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px; 
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+/* 텍스트 영역 (제목과 설명) */
+.share-text-area {
+  width: 500px; 
+  min-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  flex-shrink: 0;
+}
+
+.share-text-area h4 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 800;
+  color: #101010;
+  white-space: nowrap;
+}
+
+.share-text-area p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+  color: #603E39;
+  
+  white-space: normal; 
+  
+  word-break: keep-all;
+}
+
+.share-input-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.share-input {
+  width: 260px;
+  height: 50px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  padding: 0 20px;
+  font-size: 14px;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.share-input::placeholder {
+  color: #A0A0A0; /* 플레이스홀더 색상 살짝 연하게 */
+}
+
+.btn-send-email {
+  width: 180px;
+  height: 50px;
+  background: linear-gradient(90deg, #BC0100, #EB0000); 
+  box-shadow: 0 2px 50px rgba(69, 10, 10, 0.1);
+  border-radius: 8px;
+  border: none;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-send-email:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  width: 100%;
+  min-height: 50vh;
+  padding: 0 20px; 
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0 0 12px 0;
+  
+  word-break: keep-all; 
+}
+
+.empty-desc {
+  font-size: 15px;
+  color: #603E39; 
+  margin: 0 0 32px 0;
+  
+  word-break: keep-all; 
+}
+
+.btn-go-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  
+  background: linear-gradient(90deg, #b91c1c, #dc2626); 
+  
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  white-space: nowrap; 
+  flex-shrink: 0;
+}
+
+.btn-go-upload:hover {
+  filter: brightness(1.1); 
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+}
+
+.btn-icon svg {
+  width: 18px;
+  height: auto;
+}
+
+.score-circle-wrapper {
+  position: relative;
+  width: 192px;
+  height: 192px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.progress-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* 배경 띠 & 차오르는 띠 */
+.progress-bg, .progress-bar {
+  fill: none;
+  stroke-width: 12;
+}
+.progress-bg { stroke: #F1F1F1; }
+.progress-bar {
+  stroke: #BC0100;
+  stroke-linecap: round;
+  /* 반지름 86 기준 둘레길이 약 540 */
+  stroke-dasharray: 540; 
+  stroke-dashoffset: 540; 
+  animation: fillProgress 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+}
+
+/* 88% 차오르는 계산 수정 (540 - (540 * 0.88)) = 약 64.8 */
+@keyframes fillProgress {
+  0% { stroke-dashoffset: 540; }
+  100% { stroke-dashoffset: 64.8; }
+}
+
+.score-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: baseline; /* 88과 /100 밑단 맞추기 */
+  justify-content: center;
+}
+
+
