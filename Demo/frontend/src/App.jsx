@@ -143,22 +143,37 @@ function App() {
                     <div className="result-card score-card">
                       <h4 className="card-title">종합 트렌드 적합도</h4>
 
+                      {/* 🌟 여기서부터 교체: 가로 배치 컨테이너 시작 */}
+                      <div className="score-details-row">
+                        
+                        {/* 1. 그래프 영역 */}
+                        <div className="gauge-container">
+                          <div className="score-circle-wrapper">
+                            <svg className="progress-svg" viewBox="0 0 192 192">
+                              <circle className="progress-bg" cx="96" cy="96" r="86"></circle>
+                              <circle className="progress-bar" cx="96" cy="96" r="86"></circle>
+                            </svg>
+                            <div className="score-content">
+                              <span className="score-number">88<span className="score-max">/ 100</span></span>
+                            </div>
+                          </div>
+                        </div>
 
-                      <div className="score-circle-wrapper">
-                        <svg className="progress-svg" viewBox="0 0 192 192">
-                      <circle className="progress-bg" cx="96" cy="96" r="86"></circle>
-                      <circle className="progress-bar" cx="96" cy="96" r="86"></circle>
-                    </svg>
-    <div className="score-content">
-      <span className="score-number">88<span className="score-max">/ 100</span></span>
-    </div>
-  </div>
-
-
-                      <div className="score-label">High Viral Potential</div>
-                      <p className="score-desc">썸네일 - 7:15 ~~<br/>제목 - ---<br/>----------</p>
+                        {/* 2. 설명 텍스트 영역 */}
+                        <div className="text-details-block">
+                          <div className="score-label">High Viral Potential</div>
+                          <p className="score-desc">
+                            썸네일 - 7:15 ~~<br />
+                            제목 - ---<br />
+                            ----------
+                          </p>
+                        </div>
+                        
+                      </div>
+                      {/* 🌟 교체 끝: 가로 배치 컨테이너 종료 */}
+                      
                     </div>
-
+                    
                     {/* 오른쪽: AI 제목 추천 */}
                     <div className="titles-card">
                       <h4 className="card-title">AI 제목 추천</h4>

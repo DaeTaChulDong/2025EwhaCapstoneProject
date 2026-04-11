@@ -204,13 +204,14 @@
 /* 1. 상단 섹션 (점수 & 제목 추천) -> 제대로 사용해야됨 지금 하나도x */
 .result-top-section {
   display: flex;
+  flex-direction: column;
   gap: 32px;
   align-items: center;
 }
 
 .score-card {
-  width: 290px;
-  height: 475px;
+  width: 100%;
+  height: auto;
   flex-shrink: 0;
   padding: 32px;
   box-sizing: border-box;
@@ -220,8 +221,8 @@
   
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: top;
+  align-items: flex-start; /* 내용은 왼쪽 정렬 (제목 때문) */
+  justify-content: flex-start;
   gap: 20px;
 }
 
@@ -232,6 +233,29 @@
 
   align-self: stretch; 
   text-align: left;
+}
+
+.score-details-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;    /* 요소를 가로로 배치합니다 */
+  align-items: center;    /* 수직 중앙 정렬 */
+  justify-content: center; /* 전체를 수평 중앙 정렬 */
+  gap: 40px;              /* 그래프와 설명 사이 간격 */
+}
+
+/* 3. 그래프 컨테이너 (추가됨) */
+.gauge-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-details-block {
+  display: flex;
+  flex-direction: column; /* 텍스트는 여전히 위아래로 쌓임 */
+  align-items: center;    /* 텍스트 내용물은 중앙 정렬 */
+  gap: 16px;              /* 텍스트 요소 사이 간격 */
 }
 
 .score-circle {
@@ -283,13 +307,14 @@
 }
 
 .titles-card {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 40px;
   background-color: #F3F4F5;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .titles-card .card-title {
