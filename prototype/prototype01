@@ -1,0 +1,318 @@
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+import os
+
+# 1. 한글 폰트 설치 (나눔바른고딕)
+# -qq : 로그 최소화
+!sudo apt-get -qq install -y fonts-nanum
+
+# 2. 폰트 캐시 업데이트 (혹시 모를 오류 방지)
+!rm -rf ~/.cache/matplotlib
+
+# 3. Matplotlib에 폰트 추가 (런타임 재시작 없이 적용하기 위함)
+font_path = '/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf'
+
+if os.path.exists(font_path):
+    fm.fontManager.addfont(font_path)
+    plt.rc('font', family='NanumBarunGothic')
+
+    # 마이너스 기호 깨짐 방지
+    plt.rcParams['axes.unicode_minus'] = False
+    print("✅ 한글 폰트(나눔바른고딕)가 성공적으로 적용되었습니다.")
+else:
+    print("❌ 폰트 파일을 찾을 수 없습니다. 설치가 제대로 되지 않았을 수 있습니다.")
+
+    # @title 🚀 1. 환경 설정 및 라이브러리 설치
+
+import os
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+# 1. 한글 폰트 설치 (나눔바른고딕)
+print("⏳ 한글 폰트 및 형태소 분석기 설치 중... (약 1~2분 소요)")
+!sudo apt-get install -y fonts-nanum -q
+!sudo fc-cache -fv
+!rm ~/.cache/matplotlib -rf
+!pip install konlpy -q
+
+# 2. 폰트 설정
+plt.rc('font', family='NanumBarunGothic')
+mpl.rcParams['axes.unicode_minus'] = False # 마이너스 기호 깨짐 방지
+
+print("✅ 설치 완료! 아래 코드를 실행해 주세요.")
+
+# @title 📊 2. 트렌드 분석 로직 실행 (데이터 분석 & 시각화)
+
+from konlpy.tag import Okt
+from collections import Counter
+import re
+import pandas as pd
+
+# ==========================================
+# 1. 더미 데이터 생성 (YouTube API 대용)
+# ==========================================
+raw_data = {
+    "여행": [
+        "믿을 수 없는 나의 신혼여행 브이로그",
+        "중국 베이징에서 10,000원으로 할 수 있는 것들",
+        "나혼자 강릉 당일치기",
+        "순수한 대자연과 따뜻한 사람들의 땅, 두 달간의 중앙아시아 자전거 여행 (풀버전)",
+        "부모님 모시고 가기 좋은 베트남 여행",
+        "한국인 만족도 1위 여행지, 정말 그렇게 좋을까? 솔직하게 보여드립니다.",
+        "물가 저렴한 유럽에서 누구나 꿈꾸는 한달살이 로망",
+        "알찬 뉴욕에서의 일주일 랜덤여행 세포라 하울 보스턴 당일치기",
+        "후쿠오카 온천 여행 2박 3일 코스 추천",
+        "오사카 유니버셜 닌텐도 월드 입장권 싸게 사는 법",
+        "엔저 현상, 지금 일본 여행 가야하는 이유",
+        "삿포로 눈축제 실시간 현황, 비행기표 가격",
+        "다낭 리조트 추천, 가족 여행 숙소 비교"
+    ],
+    "IT/테크": [
+        "갤럭시 S24 울트라 언박싱, 아이폰15 비교",
+        "가성비 노트북 추천 Top 5, 대학생 노트북",
+        "아이폰15 프로 발열 테스트, 배터리 성능",
+        "맥북 에어 M3 출시일 루머 총정리",
+        "갤럭시 S24 AI 기능 실사용기, 통역 기능 대박",
+        "알리익스프레스 가성비 기계식 키보드 추천",
+        "애플 비전 프로 착용 후기, 공간 컴퓨터의 미래",
+        "삼성 갤럭시 링 디자인 유출, 출시일 예상"
+    ],
+    "요리/자취": [
+        "자취생 필수, 1분 완성 계란 볶음밥 레시피",
+        "편의점 꿀조합 레시피, 불닭볶음면 맛있게 먹는 법",
+        "일주일 반찬 만들기, 콩나물 무침 황금레시피",
+        "다이어트 요리, 닭가슴살 샐러드 드레싱 만들기",
+        "백종원 김치찌개 맛있게 끓이는 법, 비밀 재료",
+        "에어프라이어 삼겹살 굽기, 겉바속촉 비법",
+        "초간단 전자레인지 요리 모음 BEST 5"
+    ]
+}
+
+# ==========================================
+# 2. 분석 엔진 (NLP 로직)
+# ==========================================
+
+def analyze_trend(category_name, titles):
+    okt = Okt()
+
+    # 불용어(Stopwords): 분석에서 제외할 일반적인 단어들
+    stopwords = [
+        # '여행', '브이로그', '추천', '총정리', '후기', '코스', '영상', '오늘', '공개',
+        # '비교', '대박', '이유', '언박싱', '테스트', '기능', '사용', '만들기', '방법', '레시피'
+        '브이', '로그'
+    ]
+
+    # 카테고리 이름 자체도 불용어 처리 (예: 여행 카테고리에서 '여행' 제거)
+    stopwords.append(category_name.split('/')[0])
+
+    noun_list = []
+
+    for title in titles:
+        # 1. 전처리: 특수문자 제거
+        clean_title = re.sub(r'[^\w\s]', '', title)
+
+        # 2. 명사 추출
+        nouns = okt.nouns(clean_title)
+
+        # 3. 필터링 (불용어 제외, 2글자 이상)
+        filtered_nouns = [n for n in nouns if n not in stopwords and len(n) > 1]
+
+        # 4. 복합 명사 (Bi-gram) 추출 로직 (예: 갤럭시 + S24 -> 갤럭시 S24)
+        # 앞뒤 단어가 맥락상 이어지는 경우를 찾기 위해 원본 타이틀 기반으로 체크하거나
+        # 간단하게 연속된 명사를 묶어서 트렌드 키워드로 잡음
+        for i in range(len(filtered_nouns) - 1):
+            bigram = f"{filtered_nouns[i]} {filtered_nouns[i+1]}"
+            noun_list.append(bigram) # 복합 명사 추가
+
+        noun_list.extend(filtered_nouns) # 단일 명사도 추가
+
+    # 빈도수 계산
+    count = Counter(noun_list)
+    return count.most_common(7) # 상위 7개만 리턴
+
+# ==========================================
+# 3. 시각화 (Matplotlib)
+# ==========================================
+
+def plot_trends(data):
+    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+    colors = ['#FF6B6B', '#4ECDC4', '#FFD93D'] # 파스텔톤 컬러
+
+    for i, (category, titles) in enumerate(data.items()):
+        # 분석 실행
+        top_keywords = analyze_trend(category, titles)
+
+        # 데이터 분리
+        words = [k[0] for k in top_keywords]
+        counts = [k[1] for k in top_keywords]
+
+        # 그래프 그리기
+        ax = axes[i]
+        bars = ax.barh(words, counts, color=colors[i], alpha=0.8)
+        ax.invert_yaxis() # 상위 키워드가 위로 오게
+        ax.set_title(f"Target: {category}", fontsize=15, fontweight='bold')
+        ax.set_xlabel("언급 빈도(Trend Score)")
+
+        # 바 옆에 수치 표시
+        for bar in bars:
+            width = bar.get_width()
+            ax.text(width + 0.1, bar.get_y() + bar.get_height()/2,
+                    f'{int(width)}', ha='left', va='center', fontsize=10)
+
+    plt.suptitle("🎥 YouTube 카테고리별 트렌딩 토픽 분석 결과", fontsize=20, fontweight='bold')
+    plt.tight_layout()
+    plt.show()
+
+# 실행
+print("🤖 AI가 제목을 분석하여 트렌드를 추출합니다...")
+plot_trends(raw_data)
+
+# @title 💸환경 설정 및 라이브러리 설치
+!pip install -q openai pandas
+
+import os
+import json
+import pandas as pd
+from openai import OpenAI
+from IPython.display import display, Markdown
+
+# ==========================================
+# [Backend Simulation] 트렌드 DB
+# ==========================================
+TREND_DB = {
+    "여행": ["오사카", "엔저", "가성비", "편의점", "2박3일"],
+    "요리": ["1분 레시피", "자취 요리", "불닭볶음면", "다이어트"],
+    "IT/테크": ["갤럭시S24", "아이폰15", "가성비 노트북", "AI 기능"],
+}
+
+print("✅ 설정 완료")
+
+# @title 🛠️ 키워드 기반 맞춤형 제목 추천 시연
+
+import os
+import json
+import pandas as pd
+from openai import OpenAI
+from IPython.display import display
+
+# ==========================================
+# 1. 환경 설정 및 데이터 (가장 먼저 실행)
+# ==========================================
+TREND_DB = {
+    "여행": ["오사카", "엔저", "가성비", "편의점", "2박3일"],
+    "요리": ["1분 레시피", "자취 요리", "불닭볶음면", "다이어트"],
+    "IT/테크": ["갤럭시S24", "아이폰15", "가성비 노트북", "AI 기능"],
+}
+
+# ==========================================
+# 2. 더미 데이터 함수
+# ==========================================
+def mock_response_data(keywords):
+    return {
+        "suggestions": [
+            {
+                "title": f"[Mock] {keywords[0]} 여행 종결! 10만원으로 끝내기",
+                "strategy": "가성비 (시뮬레이션)",
+                "keywords_used": [keywords[0]]
+            },
+            {
+                "title": f"[Mock] 절대 실패 없는 {keywords[1]} 추천",
+                "strategy": "권위 (시뮬레이션)",
+                "keywords_used": [keywords[1]]
+            }
+        ]
+    }
+
+# ==========================================
+# 3. 메인 AI 엔진 (GPT-4o-mini)
+# ==========================================
+def generate_titles_final(api_key, category, video_summary, target_audience):
+
+    # 트렌드 키워드 가져오기
+    keywords = TREND_DB.get(category, ["화제", "이슈"])
+    keywords_str = ", ".join(keywords)
+
+    # API 키가 없으면 위에서 정의한 mock 함수 호출
+    if not api_key:
+        return mock_response_data(keywords), "🟡 Simulation", 0
+
+    try:
+        client = OpenAI(api_key=api_key)
+
+        # 영어 시스템 프롬프트 (비용 절감)
+        system_prompt = """
+        You are a professional PD and copywriter for a YouTube channel with 1 million subscribers.
+        Your goal is to create attractive titles that maximize Click-Through Rate (CTR).
+
+        You must adhere to the following principles:
+        1. Trend Integration: Naturally incorporate the provided [Trending Keywords] into the title.
+        2. Hook Elements: Use psychological techniques such as stimulating curiosity, posing problems, or specific numbers.
+        3. Conciseness: Prefer titles within 30 characters (Max 50).
+        4. No Clickbait/Lies: Absolutely no misleading titles unrelated to the video content.
+
+        Output must be in JSON format only.
+        """
+
+        user_prompt = f"""
+        Analyze the following video info and suggest 3 titles.
+
+        [Video Info]
+        - Category: {category}
+        - Summary: {video_summary}
+        - Target Audience: {target_audience}
+        - Trending Keywords to use: {keywords_str}
+
+        [Output Format]
+        Return a JSON object with a 'suggestions' list.
+        Each item must have 'title' (in Korean), 'strategy', and 'keywords_used'.
+        """
+
+        # GPT 호출
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.75
+        )
+
+        result_text = response.choices[0].message.content
+        result_json = json.loads(result_text)
+
+        # 비용 계산
+        usage = response.usage
+        cost = (usage.prompt_tokens * 0.15 + usage.completion_tokens * 0.60) / 1_000_000
+
+        return result_json, "🟢 Real AI (GPT-4o-mini)", cost
+
+    except Exception as e:
+        return {"error": str(e)}, "🔴 Error", 0
+
+# ==========================================
+# 4. 실행부
+# ==========================================
+
+# ⚠️ OpenAI API 키 입력
+OPENAI_API_KEY = ""
+
+# 입력 데이터
+CATEGORY = "여행"
+SUMMARY = "오사카 유니버셜 스튜디오 재팬, 닌텐도 월드 입장권 싸게 사는 법과 오픈런 꿀팁 정리"
+TARGET = "일본 여행을 계획 중인 2030 커플"
+
+print(f"🚀 Hookly PD 엔진 가동... (Category: {CATEGORY})\n")
+result, mode, cost = generate_titles_final(OPENAI_API_KEY, CATEGORY, SUMMARY, TARGET)
+
+# 결과 출력
+print(f"Mode: {mode}")
+if mode.startswith("🟢"):
+    print(f"💸 비용: ${cost:.6f} (약 {cost * 1350:.2f}원)")
+
+if "suggestions" in result:
+    df = pd.DataFrame(result['suggestions'])
+    display(df)
+else:
+    print(result)
