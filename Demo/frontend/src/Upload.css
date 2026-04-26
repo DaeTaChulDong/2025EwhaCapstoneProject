@@ -1,0 +1,321 @@
+/* --- 영상 업로드 화면 스타일 --- */
+.upload-page h1 {
+  margin: 0 0 20px 0;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+/* --- 1. 전체 2단 레이아웃 --- */
+.upload-container {
+  display: flex;
+  flex-direction: row; 
+  gap: 40px;           
+  /* 👇 패딩, 배경색, 테두리, 그림자를 모두 지워서 '투명한 뼈대' 역할만 하게 만듭니다! */
+  padding: 0; 
+  background-color: transparent; 
+  border: none;
+  box-shadow: none;
+  
+  /* 화면이 작아져도 좌우 형태 유지 (가로 스크롤 허용) */
+  min-width: 820px; 
+}
+
+.upload-left-col {
+  flex: 1; /* 왼쪽 박스는 남는 가로 공간을 모두 차지하게 쭉 늘립니다 */
+  display: flex;
+  flex-direction: column;
+
+  min-width: 420px;
+}
+
+.upload-right-col {
+  width: 413px; /* 👈 로코파이가 추출한 오른쪽 설정창 가로 크기 */
+  flex-shrink: 0; /* 창이 좁아져도 오른쪽은 찌그러지지 않게 방어 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 설정 박스와 아래 빨간 버튼 사이 간격 */
+}
+
+/* --- 2. 상세 분석 설정 박스 디자인 --- */
+.section-analysissettings {
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #eaeaea; /* 은은한 테두리 추가 */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.text-sectiontitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #101010;
+}
+
+.wrapper-formfields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-category {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #603E39;
+  letter-spacing: 0.5px;
+}
+
+/* --- 드롭다운 커스텀 화살표 배치 --- */
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-main {
+  appearance: none; /* 브라우저 기본 화살표 숨기기 */
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.icon-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* 클릭 방해 금지 */
+  color: #666666;
+  display: flex;
+}
+
+/* --- 시작 버튼 번개 아이콘 스타일 --- */
+.btn-start-analysis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* 글씨와 아이콘 사이 간격 */
+}
+
+.icon-bolt {
+  display: flex;
+  color: white; /* 번개는 하얗게! */
+}
+
+.icon-bolt svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* 드롭다운 & 텍스트 입력창 공통 스타일 */
+.dropdown-main,
+.textarea-main {
+  width: 100%;
+  background-color: #F8F9FA; /* 피그마의 회색 배경 */
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: #333;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+/* 클릭(포커스) 했을 때 테두리 색상 변경 */
+.dropdown-main:focus,
+.textarea-main:focus {
+  border-color: #BC0100;
+  background-color: white;
+}
+
+/* 텍스트 입력창 전용 (여러 줄 입력 가능하게) */
+.textarea-main {
+  resize: vertical; /* 위아래로만 크기 조절 가능 */
+  min-height: 80px;
+}
+
+.text-protip-container {
+  font-size: 12px;
+  color: #603E39;
+  margin-top: 4px;
+}
+
+.text-protip-container b {
+  color: #603E39;
+}
+
+/* --- 3. AI 분석 시작하기 버튼 --- */
+.btn-start-analysis {
+  width: 100%;
+  background: linear-gradient(90deg, #b91c1c, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  /* 아이콘과 글씨 정렬용 (기존 유지) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-start-analysis:hover {
+  filter: brightness(1.1); 
+  
+  transform: translateY(-2px);
+}
+
+/* 드래그 앤 드롭 박스 (점선 효과 추가!) */
+.wrapper-uploadinfo {
+  width: 100%;
+  border-radius: 12px;
+  background-color: #F8F9FA; /* 연한 회색 배경 */
+  border: 2px dashed #d0d0d0; /* 업로드 박스의 국룰인 점선! */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 48px;
+  min-height: 400px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* 마우스 올렸을 때 살짝 빨갛게 변하는 효과 */
+.wrapper-uploadinfo:hover {
+  border-color: #BC0100;
+  background-color: rgba(188, 1, 0, 0.02);
+}
+
+.icon-cloudupload {
+  margin-bottom: 12px;
+  color: #BC0100;
+}
+
+.icon-cloudupload svg {
+  width: 56px; /* 원하시는 크기로 조절하세요 */
+  height: auto;
+}
+
+.text-guidetitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #101010;
+  margin: 0 0 8px 0;
+
+  word-break: keep-all;
+}
+
+.text-supportinfo {
+  font-size: 14px;
+  color: #603E39;
+  margin: 0 0 32px 0;
+}
+
+/* 버튼 2개 가로 정렬 */
+.wrapper-actionbuttons {
+  display: flex;
+  gap: 16px; /* 버튼 사이 간격 */
+  align-items: center;
+  justify-content: center;
+}
+
+/* 파일 불러오기 버튼 (빨간 글씨 포인트) */
+.btn-secondary-local {
+  cursor: pointer;
+  border: 1px solid #eaeaea;
+  padding: 12px 24px;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #BC0100; /* 메인 레드 컬러 */
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-secondary-local:hover {
+  background-color: #f5f5f5;
+}
+
+/* URL 불러오기 버튼 (회색 글씨) */
+.btn-secondary-url {
+  cursor: pointer;
+  border: 1px solid #eaeaea;
+  padding: 12px 24px;
+  background-color: white;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #603E39; 
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-secondary-url:hover {
+  background-color: #f5f5f5;
+}
+
+.upload-box {
+  border: 2px dashed #d0d0d0;
+  border-radius: 12px;
+  padding: 100px 20px;
+  text-align: center;
+  background-color: #fafafa;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* 마우스를 올렸을 때 액션! */
+.upload-box:hover {
+  border-color: #BC0100;
+  background-color: rgba(188, 1, 0, 0.02);
+}
+
+.upload-box h2 {
+  margin: 24px 0 12px 0;
+  color: #101010;
+  font-size: 22px;
+}
+
+.upload-box p {
+  color: #888;
+  margin-bottom: 32px;
+  font-size: 15px;
+}
+
+.upload-file-btn {
+  background-color: #101010; /* 메인 다크 컬러 */
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.upload-file-btn:hover {
+  background-color: #333;
+}

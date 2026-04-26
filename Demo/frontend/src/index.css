@@ -1,0 +1,14 @@
+/* src/index.css */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-std.min.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Pretendard 폰트 강제 적용 */
+  font-family: "Pretendard Std", "Pretendard", -apple-system, sans-serif;
+}
+
+body {
+  background-color: #F8F9FA;
+}

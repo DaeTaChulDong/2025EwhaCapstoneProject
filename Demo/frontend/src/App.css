@@ -1,0 +1,289 @@
+/* src/App.css */
+/* --- 전체 레이아웃 --- */
+.layout {
+  display: flex;
+  height: 100vh;
+  /* 👇 핵심 1: 메인 화면이 깎였을 때 뒤에 보일 전체 배경을 검은색으로 깔아줍니다 */
+  background-color: #101010; 
+}
+
+/* 1. 사이드바 전체: 양옆 여백의 제한을 풀어줍니다 */
+.sidebar {
+  width: 235px;
+  background-color: #101010; 
+  padding: 35px 0 24px 0; /* 위 35px, 아래 24px, 양옆은 0으로 리셋! */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* 2. 로고 영역: 피그마 원본대로 30px 넉넉하게 여백을 줍니다 */
+.logo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 30px; /* 👈 핵심! 로고 부분만 양옆으로 30px씩 밀어줍니다 */
+  margin-bottom: 40px;
+  gap: 13px;
+}
+
+/* 로고 이미지 크기 */
+.img-logo {
+  width: 65px;
+  object-fit: cover;
+}
+
+/* 글씨들 묶음 박스 */
+.wrapper-logotext {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px; /* 타이틀과 서브타이틀 간격 */
+}
+
+/* 큰 제목 (Think:it Pro) */
+.logo-title {
+  margin: 0;
+  font-size: 33px;
+  font-weight: 800; /* 👈 Extra Bold (800) */
+  color: #f5f5f5;
+  letter-spacing: -0.6px;
+  line-height: 32px;
+}
+/* Pro 글씨 포인트 (색상 + 폰트 두께 변경) */
+.pro {
+  color: #BC0100; 
+  font-weight: 400; /* 👈 Regular (400)으로 두께를 확 낮춰줍니다! */
+}
+
+/* 작은 부제목 (Creator Workspace) */
+.creator-workspace {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  line-height: 16px;
+  color: #64748B;
+}
+
+/* 3. 메뉴 리스트: 242px짜리 버튼을 260px 사이드바 '정중앙'에 둡니다 */
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+/* 1. 메뉴 버튼 기본 디자인 (Locofy의 크기와 간격 적용) */
+.menu li {
+  display: flex;
+  align-items: center;
+  gap: 13px;             /* Locofy가 찾은 아이콘-글자 간격 */
+  padding: 12px 16px;    /* Locofy가 찾은 안쪽 여백 */
+  border-radius: 5px;    /* Locofy가 찾은 모서리 둥글기 */
+  width: 220px;          /* Locofy가 찾은 버튼 가로 길이 */
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #64748B;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu li:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 2. 현재 선택된 메뉴 디자인 (Locofy의 그라데이션 적용!) */
+.menu li.active {
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(90deg, #b91c1c, #dc2626);
+}
+
+/* 사이드바 메뉴 아이콘 크기 고정 */
+.menu-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain; /* 이미지가 찌그러지지 않게 보호 */
+}
+
+/* --- 하단 프로필 영역 --- */
+.profile-section {
+  margin-top: auto; /* 요소를 사이드바 맨 밑으로 쭈욱 밀어냅니다 */
+  border-top: 1px solid #222222; /* 얇은 가로선 */
+  
+  /* 👇 피그마 수치 적용: 위 24px, 양옆 16px, 아래 0 */
+  padding: 24px 16px 0 16px; 
+  
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 프로필 사진과 글씨 사이 간격 */
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* 프로필 아이콘(사진) 동그라미 배경 */
+.profile-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #2A2A2A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 글씨 묶음 */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 이름과 플랜 사이의 상하 간격을 살짝 띄워줍니다 */
+}
+
+/* '프로필' 이름 글씨 */
+.profile-name {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1; /* 글씨 위아래로 남는 쓸데없는 여백 제거 */
+}
+
+/* 'Pro Plan' 글씨 */
+.profile-plan {
+  color: #64748B;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* --- 메인 콘텐츠 영역 --- */
+.main-content {
+  flex: 1;
+  background-color: #F8F9FA; 
+  display: flex;
+  flex-direction: column;
+  
+  /* 👇 핵심 2: 피그마 모서리 값 완벽 적용 (왼쪽위, 오른쪽위, 오른쪽아래, 왼쪽아래 순서) */
+  border-radius: 20px 0 0 20px; 
+  /* 상단바(Top Bar)가 둥근 모서리 밖으로 삐져나가지 않게 잘라줍니다 */
+  overflow: hidden; 
+}
+
+/* --- 상단바 (Top Bar) 스타일 --- */
+.top-bar {
+  height: 47px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: rgba(255, 255, 255, 0.9); /* 살짝 투명하게 */
+  backdrop-filter: blur(12px); /* 피그마에 있던 고급스러운 블러 효과 */
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+/* --- 상단바 안쪽 요소 (인사말과 프로필 양끝으로 밀어내기) --- */
+.user-info-wrapper {
+  width: 100%; /* 상단바 가로 공간을 100% 다 쓰겠다고 선언 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 👈 핵심! 피그마의 'Gap: Auto' 역할. 양끝으로 쫙 찢어줍니다! */
+}
+
+/* 인사말 텍스트 */
+.welcome-text {
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.welcome-text strong {
+  color: #6B7280;
+  font-weight: 700;
+}
+
+/* 프로필 동그라미 이미지 */
+.topbar-profile-img {
+  width: 32px; /* 피그마 비율에 맞게 살짝 줄임 */
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+/* 마우스 올렸을 때 살짝 투명해지는 효과 (피드백) */
+.topbar-profile-img:hover {
+  opacity: 0.8;
+}
+
+.content {
+  padding: 60px 80px;
+  color: #101010;
+  flex: 1;
+
+  overflow: auto;
+}
+
+.content h1 {
+  font-size: 33px;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* --- 페이지 헤더 스타일 --- */
+.wrapper-pageheader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; /* 제목과 강조선 사이 간격 */
+  margin-bottom: 35px; /* 아래 컨테이너와의 간격 */
+
+  min-width: fit-content;
+}
+
+.text-pagetitle {
+  display: flex;
+  align-items: center;
+  gap: 13px; /* 아이콘과 글자 사이 간격 */
+  padding: 0 2px;
+
+  flex-wrap: nowrap;
+}
+
+/* 헤더용 아이콘 스타일 (검정색) */
+.header-icon {
+  display: flex;
+  align-items: center;
+  color: #101010;
+
+  flex-shrink: 0;
+}
+
+.header-icon svg {
+  width: 35px; /* 피그마 비율에 맞게 조절 */
+  height: auto;
+}
+
+.h1 {
+  margin: 0;
+  line-height: 1;
+  color: #101010;
+
+  white-space: nowrap; 
+  
+  flex-shrink: 0;
+}
+
+/* 제목 아래 빨간 강조선 */
+.divider-accent {
+  width: 50px;
+  height: 3.3px;
+  background-color: #BC0100;
+  border-radius: 2px;
+
+  flex-shrink: 0;
+}
