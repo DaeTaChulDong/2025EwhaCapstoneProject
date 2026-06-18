@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Think:it Pro | AI 컨설팅</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ================================================================
+     LOGIN PAGE
+     ================================================================ -->
+<div id="loginPage" class="login-page">
+
+  <!-- 왼쪽: 브랜드 패널 -->
+  <div class="login-left">
+    <div class="login-logo">
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+        <circle cx="26" cy="26" r="19" stroke="white" stroke-width="2.5"/>
+        <circle cx="26" cy="26" r="9"  stroke="white" stroke-width="2.5"/>
+        <line x1="26" y1="5"  x2="26" y2="17" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="26" y1="35" x2="26" y2="47" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="5"  y1="26" x2="17" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="35" y1="26" x2="47" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M35 8 Q43 8 43 16" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1 class="login-tagline">
+      <span class="tagline-accent">AI</span>로 완성하는<br>
+      가장 확실한<br>
+      <span class="tagline-accent">YouTube</span> 전략.
+    </h1>
+    <p class="login-desc">
+      Think:it Pro의 고도화된 AI 분석 엔진이 콘텐츠의 숨겨진<br>
+      잠재력을 한 발 먼저 짚어내어, 가장 완벽한 상태로 업로드<br>
+      할 수 있도록 돕습니다.
+    </p>
+  </div>
+
+  <!-- 오른쪽: 로그인 폼 -->
+  <div class="login-right">
+    <div class="login-right-inner">
+      <div class="login-brand">Think:it <strong>Pro</strong></div>
+      <h2 class="login-welcome">환영합니다!<br>구글 계정으로 3초 만에 시작하세요.</h2>
+      <button class="btn-google" id="btnGoogleLogin">
+        <svg width="18" height="18" viewBox="0 0 18 18">
+          <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+          <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+          <path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/>
+          <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+        </svg>
+        Google 계정으로 계속하기
+      </button>
+      <div class="login-divider"><span>또는</span></div>
+      <div class="login-form">
+        <label class="lf-label">이메일 주소</label>
+        <input type="email" id="loginEmail" class="lf-input" placeholder="name@company.com" />
+        <label class="lf-label" style="display:flex;justify-content:space-between;align-items:center">
+          비밀번호 <a href="#" class="forgot-link">Forgot password?</a>
+        </label>
+        <input type="password" id="loginPassword" class="lf-input" placeholder="••••••••" />
+        <button class="btn-login" id="btnLogin">로그인</button>
+      </div>
+      <p class="login-footer">계정이 없으신가요? <a href="#" class="signup-link" id="btnSignup">회원가입</a></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     APP SHELL (로그인 후)
+     ================================================================ -->
+<div id="appShell" class="app-shell" style="display:none">
+
+  <!-- ── 사이드바 ── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <svg width="36" height="36" viewBox="0 0 52 52" fill="none">
+        <circle cx="26" cy="26" r="19" stroke="white" stroke-width="2.5"/>
+        <circle cx="26" cy="26" r="9"  stroke="white" stroke-width="2.5"/>
+        <line x1="26" y1="5"  x2="26" y2="17" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="26" y1="35" x2="26" y2="47" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="5"  y1="26" x2="17" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="35" y1="26" x2="47" y2="26" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M35 8 Q43 8 43 16" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="brand-info">
+        <div class="brand-name">Think:it <strong>Pro</strong></div>
+        <div class="brand-sub">Creator Workspace</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-view="dashboard" id="navDashboard">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4zm8-8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/>
+        </svg>
+        내 대시보드
+      </a>
+      <a class="nav-item" data-view="upload" id="navUpload">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+        </svg>
+        영상 업로드
+      </a>
+      <a class="nav-item" data-view="settings" id="navSettings">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+        </svg>
+        설정
+      </a>
+    </nav>
+
+    <div class="sidebar-profile">
+      <div class="s-avatar">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="16" fill="#2e2e2e"/>
+          <circle cx="16" cy="13" r="5" fill="#666"/>
+          <path d="M5 28c0-6.075 4.925-11 11-11s11 4.925 11 11" fill="#666"/>
+        </svg>
+      </div>
+      <div class="s-info">
+        <div class="s-name">프로필</div>
+        <div class="s-plan">Pro Plan</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── 메인 영역 ── -->
+  <div class="app-main">
+
+    <!-- 탑바 -->
+    <div class="top-bar">
+      <span class="top-greeting" id="topGreeting">환영합니다, ooo님.</span>
+      <div class="top-avatar" id="topAvatar">
+        <svg viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="#ddd"/>
+          <circle cx="18" cy="14" r="6"  fill="#aaa"/>
+          <path d="M5 32c0-7.18 5.82-13 13-13s13 5.82 13 13" fill="#aaa"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 뷰 컨테이너 -->
+    <div class="view-container">
+
+      <!-- ★ 대시보드 뷰 -->
+      <div id="viewDashboard" class="view active">
+        <div class="page-title">
+          <svg class="ptitle-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4zm8-8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/>
+          </svg>
+          내 대시보드
+        </div>
+        <h3 class="section-label">분석 히스토리</h3>
+        <div id="historyList"></div>
+        <!-- 빈 상태 -->
+        <div id="emptyState" class="empty-state">
+          <p class="empty-title">아직 분석한 영상이 없습니다.</p>
+          <p class="empty-sub">첫 번째 영상을 업로드하고 AI 분석 결과를 확인해 보세요.</p>
+          <button class="btn-primary" id="btnGoUpload">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+            영상 업로드하러 가기
+          </button>
+        </div>
+      </div>
+
+      <!-- ★ 업로드 뷰 -->
+      <div id="viewUpload" class="view">
+        <div class="page-title">
+          <svg class="ptitle-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+          영상 업로드
+        </div>
+
+        <div class="upload-layout">
+          <!-- 드롭존 패널 -->
+          <div class="upload-drop-panel">
+            <div class="drop-zone" id="dropZone">
+              <div class="drop-icon-box">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#CC2222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <p class="drop-title">동영상 파일을 드래그하거나 클릭해서<br>업로드하세요</p>
+              <p class="drop-sub">MP4, MOV, WebM 형식 지원 (최대 2GB).</p>
+              <div class="drop-btns">
+                <button class="btn-outline-red" id="btnFileSelect">파일 불러오기</button>
+                <button class="btn-outline-gray">URL 불러오기</button>
+              </div>
+              <input type="file" id="fileInput" accept="video/*" hidden />
+            </div>
+
+            <!-- 파일 선택 미리보기 -->
+            <div class="file-preview" id="filePreview" style="display:none">
+              <span class="fp-icon">📹</span>
+              <span class="fp-name" id="fileName"></span>
+              <span class="fp-size" id="fileSize"></span>
+              <button class="fp-remove" id="removeFile">✕</button>
+            </div>
+
+            <!-- 팁 박스 -->
+            <div class="analysis-tip">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC2222" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="#CC2222"/>
+              </svg>
+              <div>
+                <div class="tip-label">ANALYSIS TIP</div>
+                <div class="tip-text">더 정확한 분석 결과를 위해, 영상의 화면이 선명하고 오디오 품질이 깨끗한지 확인해 주세요.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 설정 패널 -->
+          <div class="upload-settings-panel">
+            <div class="settings-card">
+              <h3 class="settings-card-title">상세 분석 설정</h3>
+              <div class="sg-group">
+                <label class="sg-label">카테고리 선택</label>
+                <select id="categorySelect" class="sg-select">
+                  <option value="">로딩 중...</option>
+                </select>
+              </div>
+              <div class="sg-group">
+                <label class="sg-label">AI 맞춤 프롬프트 입력</label>
+                <textarea id="customPrompt" class="sg-textarea"
+                  placeholder="예) 배경은 파란색으로 해줘."></textarea>
+                <p class="sg-tip">Pro Tip: 다테일하게 요구할수록 분석 퀄러티가 올라갑니다.</p>
+              </div>
+            </div>
+            <button class="btn-analyze" id="analyzeBtn" disabled>
+              AI 분석 시작하기 ⚡
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ★ 로딩 뷰 -->
+      <div id="viewLoading" class="view">
+        <div class="page-title">
+          <svg class="ptitle-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+          영상 업로드
+        </div>
+        <div class="loading-center">
+          <div class="loading-spinner-lg"></div>
+          <h2 class="loading-title">AI가 영상을 분석 중입니다...</h2>
+          <p class="loading-eta">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            분석 완료까지 남은 시간: <strong id="loadingEta" class="acc">약 2분</strong>
+          </p>
+          <button class="btn-text-link" id="btnBackToDashboard">대시보드로 돌아가기 →</button>
+          <p class="loading-note">화면을 벗어나도 분석은 백그라운드에서 계속 진행됩니다.</p>
+        </div>
+      </div>
+
+      <!-- ★ 결과 뷰 -->
+      <div id="viewResults" class="view">
+        <div class="results-header">
+          <div class="page-title" style="margin-bottom:0;padding-bottom:12px">
+            <svg class="ptitle-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M3 4a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H4a1 1 0 01-1-1v-4zm8-8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V4zm0 8a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z"/>
+            </svg>
+            내 대시보드
+          </div>
+          <button class="btn-text-link" onclick="navigate('dashboard')">목록으로 돌아가기 →</button>
+        </div>
+
+        <p class="results-sub-label">분석 결과</p>
+        <p class="results-filename" id="resultFileName">video.mp4</p>
+
+        <!-- Row 1: 점수 카드 + 제목 카드 -->
+        <div class="results-row1">
+          <!-- 점수 카드 -->
+          <div class="rcard score-card">
+            <div class="step-label">Step 1. 트렌드 진단</div>
+            <h3 class="rcard-title">종합 트렌드 적합도</h3>
+            <div class="gauge-wrap">
+              <svg class="gauge-svg" viewBox="0 0 120 120">
+                <circle class="gauge-bg"   cx="60" cy="60" r="50"/>
+                <circle class="gauge-fill" id="gaugeFill" cx="60" cy="60" r="50" stroke-dasharray="0 314"/>
+              </svg>
+              <div class="gauge-center">
+                <span class="gauge-number" id="gaugeScore">0</span>
+                <span class="gauge-unit">/100</span>
+                <span class="gauge-badge" id="gaugeLabel">분석 중</span>
+              </div>
+            </div>
+            <div class="sub-scores">
+              <div class="ss-item">
+                <div class="ss-row">
+                  <span class="ss-key">섬네일</span>
+                  <span class="ss-val" id="valVisual">--</span>
+                </div>
+                <div class="ss-comment" id="cmtVisual"></div>
+              </div>
+              <div class="ss-item">
+                <div class="ss-row">
+                  <span class="ss-key">제목</span>
+                  <span class="ss-val" id="valKeyword">--</span>
+                </div>
+                <div class="ss-comment" id="cmtKeyword"></div>
+              </div>
+              <div class="ss-item">
+                <div class="ss-row">
+                  <span class="ss-key">주제 관련성</span>
+                  <span class="ss-val" id="valTopic">--</span>
+                </div>
+                <div class="ss-comment" id="cmtTopic"></div>
+              </div>
+            </div>
+            <p class="score-comment" id="scoreComment"></p>
+            <div class="bias-chips" id="biasMetrics"></div>
+            <div class="file-meta" id="fileInfo"></div>
+          </div>
+
+          <!-- 제목 카드 -->
+          <div class="rcard titles-card">
+            <div class="step-label">Step 2. 제목 전략</div>
+            <h3 class="rcard-title">AI 제목 추천</h3>
+            <div id="titlesList"></div>
+          </div>
+        </div>
+
+        <!-- Step 3: 썸네일 전략 -->
+        <div class="step-header">
+          <span class="step-num">Step 3</span>
+          <span class="step-title-txt">썸네일 전략</span>
+        </div>
+        <div class="rcard">
+          <h3 class="rcard-title">AI 썸네일 추천</h3>
+          <div class="thumbnail-grid" id="thumbnailGrid"></div>
+        </div>
+
+        <!-- Step 4: 상세 분석 -->
+        <div class="step-header">
+          <span class="step-num">Step 4</span>
+          <span class="step-title-txt">상세 분석</span>
+        </div>
+        <div class="rcard">
+          <h3 class="rcard-title">AI 상세 분석</h3>
+          <div class="report-body" id="reportBody"></div>
+        </div>
+
+        <!-- Row 4: 이메일 공유 -->
+        <div class="rcard email-rcard">
+          <div class="email-left">
+            <h3 class="rcard-title" style="margin-bottom:6px">분석 결과 소장 및 공유하기</h3>
+            <p class="email-desc">핵심 인사이트가 담긴 컨설팅 리포트를 이메일로<br>전송해 간편하게 저장하고 확인해 보세요.</p>
+          </div>
+          <div class="email-right">
+            <input type="email" id="emailInput" class="email-input" placeholder="이메일을 입력하세요" />
+            <button class="btn-primary" id="sendEmailBtn">리포트 이메일로 받기</button>
+          </div>
+        </div>
+        <p class="email-status" id="emailStatus"></p>
+
+        <!-- CTA -->
+        <div class="results-cta">
+          <button class="btn-primary" onclick="navigate('upload')">새 영상 분석하기</button>
+          <button class="btn-outline-gray" onclick="navigate('dashboard')">분석 히스토리 보기</button>
+        </div>
+      </div>
+
+      <!-- ★ 설정 뷰 -->
+      <div id="viewSettings" class="view">
+        <div class="page-title">
+          <svg class="ptitle-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+          </svg>
+          설정
+        </div>
+        <div class="profile-card">
+          <div class="profile-card-header">
+            <span>프로필</span>
+            <button class="btn-edit-link">✏ Edit</button>
+          </div>
+          <div class="profile-card-body">
+            <div class="profile-big-avatar">
+              <svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="32" fill="#2a2a2a"/>
+                <circle cx="32" cy="26" r="11" fill="#555"/>
+                <path d="M8 58c0-13.255 10.745-24 24-24s24 10.745 24 24" fill="#555"/>
+              </svg>
+            </div>
+            <div>
+              <div class="profile-big-name" id="settingsName">ooo</div>
+              <div class="profile-big-email" id="settingsEmail">user@example.com</div>
+              <div class="profile-tags">
+                <span class="ptag">Creator</span>
+                <span class="ptag ptag-red">Verified</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /view-container -->
+  </div><!-- /app-main -->
+</div><!-- /appShell -->
+
+<div id="toast" class="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

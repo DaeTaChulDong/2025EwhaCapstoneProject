@@ -1,0 +1,13 @@
+사용자 영상 업로드
+       ↓
+[POST /api/analyze] → 즉시 job_id 반환 (1초)
+       ↓ (BackgroundTask)
+  ┌────────────────────────────────┐
+  │ Phase 1: 영상 전처리 (CPU)      │ ← OpenCV 프레임 추출 + MoviePy 오디오 분리
+  │ Phase 2: 대본 추출 (API)        │ ← OpenAI Whisper API (~5초)
+  │ Phase 3: 트렌드 분석 (메모리)    │ ← 사전로드된 CLIP + TF-IDF로 점수 산출
+  │ Phase 4: 생성 (API, 병렬)       │ ← GPT-4o 제목 + DALL-E 3 썸네일 동시 호출
+  │ Phase 5: 리포트 생성 (API)      │ ← GPT-4o 상세 분석
+  └────────────────────────────────┘
+       ↓
+[GET /api/status/{job_id}] → 프론트가 주기적으로 확인 → 완료 시 결과 반환

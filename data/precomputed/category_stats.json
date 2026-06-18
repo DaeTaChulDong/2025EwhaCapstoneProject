@@ -1,0 +1,86 @@
+{
+  "Music": {
+    "avg_views": 3595703,
+    "median_views": 699133,
+    "std_views": 8526541,
+    "avg_likes": 220549,
+    "video_count": 30
+  },
+  "Gaming": {
+    "avg_views": 145268,
+    "median_views": 106668,
+    "std_views": 94890,
+    "avg_likes": 1676,
+    "video_count": 50
+  },
+  "People_and_Blogs": {
+    "avg_views": 131083,
+    "median_views": 87842,
+    "std_views": 162587,
+    "avg_likes": 2884,
+    "video_count": 19
+  },
+  "Comedy": {
+    "avg_views": 1868425,
+    "median_views": 1178157,
+    "std_views": 1800069,
+    "avg_likes": 42000,
+    "video_count": 50
+  },
+  "Entertainment": {
+    "avg_views": 2029990,
+    "median_views": 1580131,
+    "std_views": 1262367,
+    "avg_likes": 40144,
+    "video_count": 50
+  },
+  "News_and_Politics": {
+    "avg_views": 384305,
+    "median_views": 248592,
+    "std_views": 335827,
+    "avg_likes": 13836,
+    "video_count": 50
+  },
+  "Howto_and_Style": {
+    "avg_views": 2395351,
+    "median_views": 1147059,
+    "std_views": 5557032,
+    "avg_likes": 44346,
+    "video_count": 50
+  },
+  "Science_and_Technology": {
+    "avg_views": 456047,
+    "median_views": 187044,
+    "std_views": 880007,
+    "avg_likes": 9833,
+    "video_count": 50
+  },
+  "Sports": {
+    "avg_views": 1174534,
+    "median_views": 1124325,
+    "std_views": 681219,
+    "avg_likes": 16122,
+    "video_count": 50
+  },
+  "Pets_and_Animals": {
+    "avg_views": 1093876,
+    "median_views": 724253,
+    "std_views": 975385,
+    "avg_likes": 18833,
+    "video_count": 50
+  },
+  "Autos_and_Vehicles": {
+    "avg_views": 639053,
+    "median_views": 466855,
+    "std_views": 689544,
+    "avg_likes": 9462,
+    "video_count": 50
+  },
+  "Film_and_Animation": {
+    "avg_views": 1623669,
+    "median_views": 1413085,
+    "std_views": 1272709,
+    "avg_likes": 31372,
+    "video_count": 50
+  }
+}

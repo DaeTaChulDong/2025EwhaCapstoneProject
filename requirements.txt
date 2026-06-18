@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+python-dotenv
+openai
+moviepy>=2.0.0
+opencv-python-headless
+pandas
+scikit-learn
+requests
+pillow
