@@ -245,8 +245,4 @@ curl http://localhost:8000/api/status/{job_id}
 
 ---
 
-## 📄 라이선스
-
-본 프로젝트는 한이음 드림업 2026 교육 과정의 일환으로 개발되었습니다.
-
-© 2026 19팀 싱킷 (Think:it Pro)
+2026 19팀 싱킷 (Think:it Pro)
