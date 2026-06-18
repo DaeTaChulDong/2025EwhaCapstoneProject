@@ -112,8 +112,8 @@ my_yt_consulting/
 ### 1. 저장소 클론
 
 ```bash
-git clone https://github.com/본인계정/my_yt_consulting.git
-cd my_yt_consulting
+git clone https://github.com/DaeTaChulDong/2025EwhaCapstoneProject
+cd (파일명)
 ```
 
 ### 2. 환경변수 설정
@@ -146,11 +146,11 @@ python app/precompute.py
 
 ```bash
 # 이미지 빌드
-docker build -t my_yt_consulting .
+docker build -t (파일명) .
 
 # 컨테이너 실행
 docker run -d --name thinkit --restart always \
-  -p 8000:8000 --env-file .env my_yt_consulting
+  -p 8000:8000 --env-file .env (파일명)
 ```
 
 ### 방법 B: 로컬 Python 실행
